@@ -1,0 +1,56 @@
+include ../../bem/row-reg/__row-reg.pug
+
+doctype html
+html(lang='en')
+	head
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(charset='UTF-8')
+		title HTML tester
+		link(rel="icon" type="image/png" href="favicon.png" sizes="16x16")
+		link(rel="shortcut icon" type="image/x-icon" href="favicon.ico")
+		
+			
+		link(rel= "stylesheet" href="css/normalize.css")
+		link(rel= "stylesheet" href="css/index.css")
+
+		link(href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet")
+
+		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick.css")
+		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick-theme.css")
+
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js")
+		
+	body
+		.form-reg
+			header.header-reg
+				h1.header-reg_title Sign up for FREE!
+			main.main-reg
+				form.main-reg_form
+					.row-reg
+						span.row-reg_title I am
+						.row-reg_icons._move
+							label.row-reg_icon.row-reg_icon__male
+								input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='')
+								span.row-reg_icon-img._forBackMove
+							label.row-reg_icon.row-reg_icon__female
+								input.row-reg_icon-radio(type="radio" value="female" name="gender")
+								span.row-reg_icon-img._forMove
+							//- .row-reg_icon.row-reg_icon__check
+							//- 	img.row-reg_icon-img(src="img/input_male_checked.png", alt="" )
+							//- 	img.row-reg_icon-img(src="img/input_male_unchecked.png", alt="" )
+							//- .row-reg_icon.row-reg_icon__uncheck
+							//- 	img.row-reg_icon-img(src="img/input_female_checked.png", alt="" )
+							//- 	img.row-reg_icon-img(src="img/input_female_unchecked.png", alt="" )
+					+rowReg("Year of birth", false, "")
+					+rowReg("Email", true, "text")
+					+rowReg("Password", true, "password")
+					+rowReg("Postal code", true, "text")
+			.submit-reg
+				button.submit-reg_button(type="submit" value="") register now!
+				.submit-reg_agrees
+					| By clicking the button above you agree to our 
+					a.submit-reg_link(href="#") Terms of Use 
+					| and 
+					a.submit-reg_link(href="#") Privacy Policy 
+					| including use of cookies.
+	script(src="js/index.js")
