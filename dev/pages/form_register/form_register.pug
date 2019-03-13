@@ -25,7 +25,7 @@ html(lang='en')
 			header.header-reg
 				h1.header-reg_title Sign up for FREE!
 			main.main-reg
-				form.main-reg_form
+				form.main-reg_form._formReg
 					.row-reg
 						span.row-reg_title I am
 						.row-reg_icons._move
@@ -35,16 +35,11 @@ html(lang='en')
 							label.row-reg_icon.row-reg_icon__female
 								input.row-reg_icon-radio(type="radio" value="female" name="gender")
 								span.row-reg_icon-img._forMove
-							//- .row-reg_icon.row-reg_icon__check
-							//- 	img.row-reg_icon-img(src="img/input_male_checked.png", alt="" )
-							//- 	img.row-reg_icon-img(src="img/input_male_unchecked.png", alt="" )
-							//- .row-reg_icon.row-reg_icon__uncheck
-							//- 	img.row-reg_icon-img(src="img/input_female_checked.png", alt="" )
-							//- 	img.row-reg_icon-img(src="img/input_female_unchecked.png", alt="" )
-					+rowReg("Year of birth", false, "")
-					+rowReg("Email", true, "text")
-					+rowReg("Password", true, "password")
-					+rowReg("Postal code", true, "text")
+
+					+rowReg("Year of birth", false, "", "_inputValid", "year")
+					+rowReg("Email", true, "text", "_inputValid", "email")
+					+rowReg("Password", true, "password", "_inputValid", "pass")
+					+rowReg("Postal code", true, "text", "_inputValid", "postCode")
 			.submit-reg
 				button.submit-reg_button(type="submit" value="") register now!
 				.submit-reg_agrees

@@ -1,9 +1,9 @@
-mixin rowReg(rowTitle, inputFlag, inputType)
+mixin rowReg(rowTitle, inputFlag, inputType, jsClass, id)
 	.row-reg
 		div.row-reg_title= rowTitle
 		if (inputFlag== true)
-			input.row-reg_input(type=inputType)
+			input.row-reg_input(type=inputType, class=jsClass, id=id)
 		else
-			select.row-reg_input(name=rowTitle)
+			select.row-reg_input(name=rowTitle, class=jsClass, id=id)
 				- for (var i = 1950; i<=2020; i++)
 					option(value=i)= i
