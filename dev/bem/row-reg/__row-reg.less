@@ -2,7 +2,8 @@
 	display: flex;
 	font-size: 14px;
 	color: @colorText;
-	height: 40px;
+	height: 100%;
+	position: relative;
 
 	&_title {
 		display: flex;
@@ -18,6 +19,11 @@
 		padding-left: 0;
 		border: none;
 		border-bottom: 1px solid @colorAdd;
+
+		&__invalid {
+			border-bottom: 1px solid @colorText;
+			color: @colorText;
+		}
 
 		&:active, 
 		&:hover, 
@@ -102,6 +108,20 @@
 		width: 100%;
 		height: 100%;
 		cursor: pointer;
+	}
+
+	&_tooltip {
+		position: absolute;
+		left: 335px;
+		margin-top: -5px;
+
+		&__invis {
+			display: none;
+		}
+
+		&__vis {
+			display: block;
+		}
 	}
 
 	// @keyframes sheen {

@@ -26,20 +26,25 @@ html(lang='en')
 				h1.header-reg_title Sign up for FREE!
 			main.main-reg
 				form.main-reg_form._formReg
-					.row-reg
-						span.row-reg_title I am
-						.row-reg_icons._move
-							label.row-reg_icon.row-reg_icon__male
-								input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='')
-								span.row-reg_icon-img._forBackMove
-							label.row-reg_icon.row-reg_icon__female
-								input.row-reg_icon-radio(type="radio" value="female" name="gender")
-								span.row-reg_icon-img._forMove
+					.main-reg_row-reg
+						.row-reg
+							span.row-reg_title I am
+							.row-reg_icons._move
+								label.row-reg_icon.row-reg_icon__male
+									input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='')
+									span.row-reg_icon-img._forBackMove
+								label.row-reg_icon.row-reg_icon__female
+									input.row-reg_icon-radio(type="radio" value="female" name="gender")
+									span.row-reg_icon-img._forMove
 
-					+rowReg("Year of birth", false, "", "_inputValid", "year")
-					+rowReg("Email", true, "text", "_inputValid", "email")
-					+rowReg("Password", true, "password", "_inputValid", "pass")
-					+rowReg("Postal code", true, "text", "_inputValid", "postCode")
+					.main-reg_row-reg
+						+rowReg("Year of birth", false, "", "_inputValid", "Year")
+					.main-reg_row-reg
+						+rowReg("Email", true, "text", "_inputValid", "Email")
+					.main-reg_row-reg
+						+rowReg("Password", true, "password", "_inputValid", "Pass")
+					.main-reg_row-reg
+						+rowReg("Postal code", true, "text", "_inputValid", "PostCode")
 			.submit-reg
 				button.submit-reg_button(type="submit" value="") register now!
 				.submit-reg_agrees
