@@ -34,20 +34,55 @@ $("._move").on("click", function(){
 // 	}
 // }
 
-$("._formReg").on("blur", "._inputValid", emptyValidation);
-$("._formReg").on("focus", "._inputValid", emptyValidation);
+// $("._formReg").on("blur", "._inputEmail", validationEmail);
+$("._formReg").on("blur", "._inputValid", validation);
+$("._formReg").on("focus", "._inputValid", validation);
 
-function emptyValidation(){
+function validation () {
+
+	var flgValid = emptyValidation($(this));
+
+	if($(this).hasClass("_inputEmail") && flgValid) {
+		flgValid = validationEmail($(this));
+	}
+}
+
+function emptyValidation($elem){
 	var emptyMess = "This field can't be empty";
-	if (!valExist($(this))) {
-		console.log(emptyMess + " - " + $(this).attr('class'));
+	if (!valExist($elem)) {
+		console.log(emptyMess + " - " + $elem.attr('class'));
 		
-		$(this).addClass("row-reg_input__invalid")
+		$elem.addClass("row-reg_input__invalid")
 				.siblings("._rowTooltip").removeClass("row-reg_tooltip__invis")
 											.addClass("row-reg_tooltip__vis")
 											.find("._tooltipText").html(emptyMess);
+		return false;
 	} else {
-		$(this).removeClass("row-reg_input__invalid").siblings("._rowTooltip").removeClass("row-reg_tooltip__vis").addClass("row-reg_tooltip__invis").find("._tooltipText").html("ok");
+		$elem.removeClass("row-reg_input__invalid")
+				.siblings("._rowTooltip").removeClass("row-reg_tooltip__vis")
+											.addClass("row-reg_tooltip__invis")
+											.find("._tooltipText").html("ok");
+		return true;
+	}
+}
+
+function validationEmail($elem){
+	var invalidEmailMessage =  "Please include an '@' in the email address";
+	var str = $elem.val();
+	var dogFlag = str.indexOf("@");
+	console.log(dogFlag);
+	if(dogFlag == -1) {
+		$elem.addClass("row-reg_input__invalid")
+		.siblings("._rowTooltip").removeClass("row-reg_tooltip__invis")
+									.addClass("row-reg_tooltip__vis")
+									.find("._tooltipText").html(invalidEmailMessage);
+		return false;
+	} else {
+		$elem.removeClass("row-reg_input__invalid")
+		.siblings("._rowTooltip").removeClass("row-reg_tooltip__vis")
+									.addClass("row-reg_tooltip__invis")
+									.find("._tooltipText").html("ok");
+		return true;
 	}
 }
 
