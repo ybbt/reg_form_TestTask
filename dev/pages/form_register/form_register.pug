@@ -1,6 +1,9 @@
 include ../../bem/row-reg/__row-reg.pug
-include ../../general/svg/iconMale.pug
-include ../../general/svg/iconFemale.pug
+//- include ../../general/svg/iconMale.pug
+//- include ../../general/svg/iconFemale.pug
+include ../../general/svg/__iconGenderSvg.pug
+include ../../general/svg/__iconQuestion.pug
+include ../../general/svg/__iconLocationSvg.pug
 
 doctype html
 html(lang='en')
@@ -15,7 +18,7 @@ html(lang='en')
 		link(rel= "stylesheet" href="css/normalize.css")
 		link(rel= "stylesheet" href="css/index.css")
 
-		link(href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet")
+		link(href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet")
 
 		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick.css")
 		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick-theme.css")
@@ -34,11 +37,11 @@ html(lang='en')
 							.row-reg_icons._move
 								label.row-reg_icon.row-reg_icon__male
 									input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='' form='reg')
-									+iconMale
+									+iconGender("male")
 									//- span.row-reg_icon-img._forBackMove
 								label.row-reg_icon.row-reg_icon__female
 									input.row-reg_icon-radio(type="radio" value="female" name="gender" form='reg')
-									+iconFemale
+									+iconGender("female")
 									//- span.row-reg_icon-img._forMove
 
 					.main-reg_row-reg
@@ -51,9 +54,11 @@ html(lang='en')
 						+rowReg("Postal code", true, "text", "postcode", "_inputValid", "PostCode")
 					.main-reg_location-row
 						.main-reg_location
-							img.main-reg_location-location(src="img/location.png", alt="")
+							+iconLocation
+							//- img.main-reg_location-location(src="img/location.png", alt="")
 							span.main-reg_position E.g. Berlin or 10432
-						img.main-reg_location-question._questionReg(src="img/question.png", alt="")
+						+iconQuestion
+						//- img.main-reg_location-question._questionReg(src="img/question.png", alt="")
 						.main-reg_tooltip._rowTooltip
 							+tooltipReg("We don’t use postal codes to cantact members directly", jsClassId, "question")
 			.submit-reg
