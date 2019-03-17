@@ -18,19 +18,6 @@ for (var i = 1950; i<=nowYear; i++){
 }
 
 $inputYear.val(nowYear);
-// $("._forMove").on("click", myFunction);
-// $("._forBackMove").on("click", myFunctionBack);
-
-
-// function myFunction(e) {
-// 	// console.log("hello");
-// 	$("._move").addClass("row-reg_icons__move");
-// }
-
-// function myFunctionBack(e) {
-// 	// console.log("hello2");
-// 	$("._move").removeClass("row-reg_icons__move");
-// }
 
 $("._move").on("click", function(){
 	if(event.target.classList.contains('_forMove')) {
@@ -49,23 +36,6 @@ $formReg.submit(function(){
 $formReg.on("focusout", "._inputValid", validation);
 $formReg.on("focusin", "._inputValid", clearInvalidEffect);
 
-// $formReg.on("focusout", function(){
-// 	console.log(aVal);
-// 	if (!aVal) {
-// 		markInvalid($formReg.find("._inputYear"), "jhjg")
-// 	}
-// 	if (!eVal) {
-// 		console.log("popal email");
-// 		markInvalid($formReg.find("._inputEmail"), "jhghjg")
-// 	}
-// 	if (!pVal) {
-// 		markInvalid($formReg.find("._inputPass"), "vhv")
-// 	}
-// 	if (!cVal) {
-// 		markInvalid($formReg.find("._inputPostCode"), "vhgv")
-// 	}
-// });
-
 $("._submitReg").on("click", function (){
 	$inputs = $("._inputValid");
 	console.log(aVal + eVal + pVal + cVal);
@@ -74,9 +44,7 @@ $("._submitReg").on("click", function (){
 	} else if (aVal && eVal && pVal && cVal) {
 			console.log("SUBMIT");
 			$formReg.submit();
-		
 	}
-	
 });
 
 $("._questionReg").on("mouseenter", function() {
@@ -92,7 +60,6 @@ function clearInvalidEffect (){
 }
 
 function markInvalid ($elem, message){
-	// console.log("popa mark " + $elem);
 	$elem.addClass("row-reg_input__invalid")
 	.siblings("._rowTooltip").queue(function (next) {
 		$elem.siblings("._rowTooltip").find("._tooltipText").text(message);
@@ -111,39 +78,22 @@ function validation () {
 		flgValid = ageValidation($(this));
 		aVal = flgValid;
 		revisionMark(aVal, $(this), ageMess);
-		// if (!aVal) {
-		// 	markInvalid($(this), ageMess);
-		// }
 	} else {
-
 		var flgValid = emptyValidation($(this));
 
 		if($(this).hasClass("_inputEmail") && flgValid) {
 			flgValid = validationEmail($(this));
 			eVal = flgValid;
 			revisionMark(eVal, $(this), invalidEmailMessage);
-			// if (!pVal) {
-			// 	markInvalid($(this), invalidEmailMessage);
-			// }
-			
 		} else if($(this).hasClass("_inputPass")){
 			pVal = flgValid;
 			revisionMark(pVal, $(this), emptyMess);
-			// if (!pVal) {
-			// 	markInvalid($(this), emptyMess);
-			// }
 		} else if($(this).hasClass("_inputPostCode")){
 			cVal = flgValid;
 			revisionMark(cVal, $(this), emptyMess);
-			// if (!cVal) {
-			// 	markInvalid($(this), emptyMess);
-			// }
 		} else if($(this).hasClass("_inputEmail")){
 			eVal = flgValid;
 			revisionMark(eVal, $(this), emptyMess);
-			// if (!eVal) {
-			// 	markInvalid($(this), emptyMess);
-			// }
 		} 
 	}
 

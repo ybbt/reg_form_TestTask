@@ -1,6 +1,5 @@
 include ../../bem/row-reg/__row-reg.pug
-//- include ../../general/svg/iconMale.pug
-//- include ../../general/svg/iconFemale.pug
+
 include ../../general/svg/__iconGenderSvg.pug
 include ../../general/svg/__iconQuestion.pug
 include ../../general/svg/__iconLocationSvg.pug
@@ -20,9 +19,6 @@ html(lang='en')
 
 		link(href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet")
 
-		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick.css")
-		//- link(rel= "stylesheet" href="libs/slick-1.8.1/slick/slick-theme.css")
-
 		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js")
 		
 	body
@@ -38,12 +34,11 @@ html(lang='en')
 								label.row-reg_icon.row-reg_icon__male
 									input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='' form='reg')
 									+iconGender("male")
-									//- span.row-reg_icon-img._forBackMove
+									
 								label.row-reg_icon.row-reg_icon__female
 									input.row-reg_icon-radio(type="radio" value="female" name="gender" form='reg')
 									+iconGender("female")
-									//- span.row-reg_icon-img._forMove
-
+									
 					.main-reg_row-reg
 						+rowReg("Year of birth", false, "", "yearBirth","_inputValid", "Year")
 					.main-reg_row-reg
@@ -55,10 +50,10 @@ html(lang='en')
 					.main-reg_location-row
 						.main-reg_location
 							+iconLocation
-							//- img.main-reg_location-location(src="img/location.png", alt="")
+							
 							span.main-reg_position E.g. Berlin or 10432
 						+iconQuestion
-						//- img.main-reg_location-question._questionReg(src="img/question.png", alt="")
+						
 						.main-reg_tooltip._rowTooltip
 							+tooltipReg("We don’t use postal codes to cantact members directly", jsClassId, "question")
 			.submit-reg
