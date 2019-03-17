@@ -39,7 +39,7 @@
 		position: relative;
 		border-bottom: 1px solid @colorAdd;
 		box-sizing: border-box;
-		
+
 
 
 		&:after {
@@ -50,8 +50,8 @@
 			position: absolute;
 			left:0;
 			bottom: -1px;
-			transition: 0.5s;
-			transition-timing-function:  cubic-bezier(1, .99, 1, .22);
+			transition: 2s;
+			transition-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0); // steps(5, end);
 		}
 		
 		&__move {
@@ -68,6 +68,7 @@
 		height: 40px;
 		display: block;
 		position: relative;
+		cursor: pointer;
 
 		&__female, &__male {
 			.row-reg_icon-radio {
@@ -112,6 +113,7 @@
 		width: 100%;
 		height: 100%;
 		cursor: pointer;
+		pointer-events: none;
 
 		transition: 1s;
 	}
