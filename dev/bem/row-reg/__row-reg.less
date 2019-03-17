@@ -21,8 +21,8 @@
 		border-bottom: 1px solid @colorAdd;
 
 		&__invalid {
-			border-bottom: 1px solid @colorText;
-			color: @colorText;
+			border-bottom: 1px solid @colorInvalid;
+			color: @colorInvalid;
 		}
 
 		&:active, 
@@ -74,6 +74,12 @@
 						background: url(../img/input_female_checked.png) no-repeat;
 					}
 				}
+
+				&:hover {
+					& + .row-reg_icon-img {
+						background: url(../img/input_female_hover.png) no-repeat;
+					}
+				}
 			}
 
 			.row-reg_icon-img {
@@ -87,6 +93,12 @@
 				&:checked {
 					& + .row-reg_icon-img {
 						background: url(../img/input_male_checked.png) no-repeat;
+					}
+				}
+
+				&:hover {
+					& + .row-reg_icon-img {
+						background: url(../img/input_male_hover.png) no-repeat;
 					}
 				}
 			}
@@ -114,15 +126,14 @@
 		position: absolute;
 		left: 335px;
 		margin-top: -5px;
-
-		&__invis {
-			display: none;
-		}
-
+		display: none;
+		
 		&__vis {
 			display: block;
 		}
 	}
+
+	
 
 	// @keyframes sheen {
 	// 	100% {

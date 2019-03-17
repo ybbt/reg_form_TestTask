@@ -6,12 +6,13 @@
 	position: relative;
 	width: 190px;
 	height: 50px;
-	background: #ff3000;
+	background: @colorInvalid;
 	border-radius: 5px;
 	font: 12px/18px Arial;
 	filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7)) ;
 
 	&::after {
+		
 		display: block;
 		position: absolute;
 		top: calc(50%-30px);
@@ -19,8 +20,13 @@
 		margin-left: 1px;
 		content: '';
 		border-width: 8px 8px 8px 0;
-		border-color: transparent #ff3000 transparent transparent;
+		// border-color: transparent @colorTriangle transparent transparent;
+		.bc(@colorInvalid);
 		border-style: solid;
+	}
+
+	.bc(@color){
+		border-color: transparent @color transparent transparent
 	}
 	
 	&_text {
@@ -29,5 +35,19 @@
 		color: #fff;
 	}
 
+	&__question{
+		
+		background: white;
+		
+		&::after{
+			.bc(white);
+		}
+	}
+
+	&__question &_text{
+		color: @colorAgree;
+	}
+
 	
+
 }

@@ -25,28 +25,35 @@ html(lang='en')
 			header.header-reg
 				h1.header-reg_title Sign up for FREE!
 			main.main-reg
-				form.main-reg_form._formReg
+				form.main-reg_form._formReg#reg
 					.main-reg_row-reg
 						.row-reg
 							span.row-reg_title I am
 							.row-reg_icons._move
 								label.row-reg_icon.row-reg_icon__male
-									input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='')
+									input.row-reg_icon-radio(type="radio" value="male" name="gender" checked='' form='reg')
 									span.row-reg_icon-img._forBackMove
 								label.row-reg_icon.row-reg_icon__female
-									input.row-reg_icon-radio(type="radio" value="female" name="gender")
+									input.row-reg_icon-radio(type="radio" value="female" name="gender" form='reg')
 									span.row-reg_icon-img._forMove
 
 					.main-reg_row-reg
-						+rowReg("Year of birth", false, "", "_inputValid", "Year")
+						+rowReg("Year of birth", false, "", "yearBirth","_inputValid", "Year")
 					.main-reg_row-reg
-						+rowReg("Email", true, "text", "_inputValid", "Email")
+						+rowReg("Email", true, "email", "email", "_inputValid", "Email")
 					.main-reg_row-reg
-						+rowReg("Password", true, "password", "_inputValid", "Pass")
+						+rowReg("Password", true, "password", "password", "_inputValid", "Pass")
 					.main-reg_row-reg
-						+rowReg("Postal code", true, "text", "_inputValid", "PostCode")
+						+rowReg("Postal code", true, "text", "postcode", "_inputValid", "PostCode")
+					.main-reg_location-row
+						.main-reg_location
+							img.main-reg_location-location(src="img/location.png", alt="")
+							span.main-reg_position E.g. Berlin or 10432
+						img.main-reg_location-question._questionReg(src="img/question.png", alt="")
+						.main-reg_tooltip._rowTooltip
+							+tooltipReg("We don’t use postal codes to cantact members directly", jsClassId, "question")
 			.submit-reg
-				button.submit-reg_button(type="submit" value="") register now!
+				button.submit-reg_button._submitReg(type="submit" value="") register now!
 				.submit-reg_agrees
 					| By clicking the button above you agree to our 
 					a.submit-reg_link(href="#") Terms of Use 

@@ -1,3 +1,23 @@
+var aVal = false;
+var eVal = false;
+var pVal = false;
+var cVal = false;
+
+var ageMess = "You must be at least 18 year old";
+var emptyMess = "This field can't be empty";
+var invalidEmailMessage =  "Please include an '@' in the email address";
+
+var $inputYear = $("._inputYear");
+
+var now = new Date();
+var nowYear = now.getFullYear();
+
+for (var i = 1950; i<=nowYear; i++){
+	var inStr = "<option>" + i + "</option>";
+	$(inStr).appendTo($inputYear);
+}
+
+$inputYear.val(nowYear);
 // $("._forMove").on("click", myFunction);
 // $("._forBackMove").on("click", myFunctionBack);
 
@@ -15,94 +35,167 @@
 $("._move").on("click", function(){
 	if(event.target.classList.contains('_forMove')) {
 		$(this).addClass("row-reg_icons__move");
-	}else if(event.target.classList.contains('_forBackMove') ){
+	} else if(event.target.classList.contains('_forBackMove') ){
 		$(this).removeClass("row-reg_icons__move");
 	}
 });
 
+var $formReg = $("._formReg");
 
+$formReg.submit(function(){
+	console.log("Form is valid!");
+});
 
-// document.querySelector("._postCode").addEventListener("blur", postCodeValid);
-// var emptyMess = "This field can't be empty";
+$formReg.on("focusout", "._inputValid", validation);
+$formReg.on("focusin", "._inputValid", clearInvalidEffect);
 
-// function postCodeValid(e) {
-// 	console.log("post");
-// 	if (valExist(this)) { // введено не число
-// 		// показать ошибку
-// 		//this.className = "error";
-// 		console.log(emptyMess);
+// $formReg.on("focusout", function(){
+// 	console.log(aVal);
+// 	if (!aVal) {
+// 		markInvalid($formReg.find("._inputYear"), "jhjg")
 // 	}
-// }
+// 	if (!eVal) {
+// 		console.log("popal email");
+// 		markInvalid($formReg.find("._inputEmail"), "jhghjg")
+// 	}
+// 	if (!pVal) {
+// 		markInvalid($formReg.find("._inputPass"), "vhv")
+// 	}
+// 	if (!cVal) {
+// 		markInvalid($formReg.find("._inputPostCode"), "vhgv")
+// 	}
+// });
 
-// $("._formReg").on("blur", "._inputEmail", validationEmail);
-$("._formReg").on("blur", "._inputValid", validation);
-$("._formReg").on("focus", "._inputValid", validation);
+$("._submitReg").on("click", function (){
+	$inputs = $("._inputValid");
+	console.log(aVal + eVal + pVal + cVal);
+	if (aVal==false || eVal==false || pVal==false || cVal==false) {
+		$inputs.each(validation);
+	} else if (aVal && eVal && pVal && cVal) {
+			console.log("SUBMIT");
+			$formReg.submit();
+		
+	}
+	
+});
+
+$("._questionReg").on("mouseenter", function() {
+	$(this).siblings("._rowTooltip").slideDown(500);
+});
+
+$("._questionReg").on("mouseleave", function() {
+	$(this).siblings("._rowTooltip").slideUp(500);
+});
+
+function clearInvalidEffect (){
+	$(this).removeClass("row-reg_input__invalid");
+}
+
+function markInvalid ($elem, message){
+	// console.log("popa mark " + $elem);
+	$elem.addClass("row-reg_input__invalid")
+	.siblings("._rowTooltip").queue(function (next) {
+		$elem.siblings("._rowTooltip").find("._tooltipText").text(message);
+		next();
+	});
+	$elem.siblings("._rowTooltip").fadeIn(1000);
+}
 
 function validation () {
+	
+	var flgValid = false;	
 
-	var flgValid = emptyValidation($(this));
+	$(this).siblings("._rowTooltip").fadeOut(200);
 
-	if($(this).hasClass("_inputEmail") && flgValid) {
-		flgValid = validationEmail($(this));
+	if ($(this).hasClass("_inputYear")) {
+		flgValid = ageValidation($(this));
+		aVal = flgValid;
+		revisionMark(aVal, $(this), ageMess);
+		// if (!aVal) {
+		// 	markInvalid($(this), ageMess);
+		// }
+	} else {
+
+		var flgValid = emptyValidation($(this));
+
+		if($(this).hasClass("_inputEmail") && flgValid) {
+			flgValid = validationEmail($(this));
+			eVal = flgValid;
+			revisionMark(eVal, $(this), invalidEmailMessage);
+			// if (!pVal) {
+			// 	markInvalid($(this), invalidEmailMessage);
+			// }
+			
+		} else if($(this).hasClass("_inputPass")){
+			pVal = flgValid;
+			revisionMark(pVal, $(this), emptyMess);
+			// if (!pVal) {
+			// 	markInvalid($(this), emptyMess);
+			// }
+		} else if($(this).hasClass("_inputPostCode")){
+			cVal = flgValid;
+			revisionMark(cVal, $(this), emptyMess);
+			// if (!cVal) {
+			// 	markInvalid($(this), emptyMess);
+			// }
+		} else if($(this).hasClass("_inputEmail")){
+			eVal = flgValid;
+			revisionMark(eVal, $(this), emptyMess);
+			// if (!eVal) {
+			// 	markInvalid($(this), emptyMess);
+			// }
+		} 
+	}
+
+	
+}
+
+function revisionMark (flagVal, $elem, message){
+	if (!flagVal) {
+		markInvalid($elem, message);
 	}
 }
 
-function emptyValidation($elem){
-	var emptyMess = "This field can't be empty";
-	if (!valExist($elem)) {
-		console.log(emptyMess + " - " + $elem.attr('class'));
+function ageValidation ($elem) {
+	
+	var now = new Date();
+	var nowYear = now.getFullYear();
+
+	var inputYear = +$elem.val();
+	
+	if ((nowYear - inputYear) < 18) {
 		
-		$elem.addClass("row-reg_input__invalid")
-				.siblings("._rowTooltip").removeClass("row-reg_tooltip__invis")
-											.addClass("row-reg_tooltip__vis")
-											.find("._tooltipText").html(emptyMess);
 		return false;
 	} else {
-		$elem.removeClass("row-reg_input__invalid")
-				.siblings("._rowTooltip").removeClass("row-reg_tooltip__vis")
-											.addClass("row-reg_tooltip__invis")
-											.find("._tooltipText").html("ok");
+		return true;
+	}
+}
+
+
+function emptyValidation($elem){
+	
+	if (!valExist($elem)) {
+		
+		return false;
+	} else {
 		return true;
 	}
 }
 
 function validationEmail($elem){
-	var invalidEmailMessage =  "Please include an '@' in the email address";
+	
 	var str = $elem.val();
 	var dogFlag = str.indexOf("@");
 	console.log(dogFlag);
 	if(dogFlag == -1) {
-		$elem.addClass("row-reg_input__invalid")
-		.siblings("._rowTooltip").removeClass("row-reg_tooltip__invis")
-									.addClass("row-reg_tooltip__vis")
-									.find("._tooltipText").html(invalidEmailMessage);
+		
 		return false;
 	} else {
-		$elem.removeClass("row-reg_input__invalid")
-		.siblings("._rowTooltip").removeClass("row-reg_tooltip__vis")
-									.addClass("row-reg_tooltip__invis")
-									.find("._tooltipText").html("ok");
 		return true;
 	}
 }
 
-// function validate() {
-// 	var elemArr = null;
-
-// 	var year = document.querySelector("._year");
-// 	var email = document.querySelector("._email");
-// 	var password = document.querySelector("._pass");
-// 	var postCode = document.querySelector("._postCode");
-
-// 	var emptyMess = "This field can't be empty";
-
-// 	if (!valExist(email)) {
-// 		console.log(emptyMess);
-// 	}
-// }
-
 function valExist ($elem) {
-	// console.log($elem.val());
 	if ($elem.val() != "") {
 		return true;
 	}

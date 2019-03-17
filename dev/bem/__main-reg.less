@@ -10,4 +10,52 @@
 		height: 40px;
 		
 	}
+
+	&_location-row{
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		flex-direction: row;
+		height: 35px;
+		margin-bottom: 35px;
+		position: relative;
+		// box-sizing: border-box;
+	}
+
+	&_location {
+		display: flex;
+		align-items: center;
+		max-width: calc(100% - 20px);
+		flex-wrap: nowrap;
+		height: 20px;
+	}
+
+	&_location-question{
+		width: 20px;
+		height: 20px;
+		
+	}
+
+	&_position {
+		margin-left: 10px;
+		font-size: 12px;
+		color: @colorAgree;
+	}
+
+	&_location-location{
+		width: 14px;
+		height: 20px;
+	}
+
+	&_tooltip {
+		position: absolute;
+		left: 335px;
+		margin-top: 0;
+		top: 0;
+		display: none;
+		
+		&__vis {
+			display: block;
+		}
+	}
 }
