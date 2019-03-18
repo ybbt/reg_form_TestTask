@@ -44,6 +44,8 @@ body {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
 }
 .header-reg,
 .header-reg_title {
@@ -240,6 +242,9 @@ body {
   margin-top: 20PX;
   font-size: 12px;
   color: #999;
+}
+.submit-reg_link {
+  color: #f89921;
 }
 @-webkit-keyframes button-sheen {
   100% {

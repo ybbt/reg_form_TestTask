@@ -1,8 +1,10 @@
-var aVal = false;
-var eVal = false;
-var pVal = false;
-var cVal = false;
+//переменньіе для отслеживания состояния прохождения валидации полями
+var aVal = false;//валидация возраста
+var eVal = false;//вадидация email-а
+var pVal = false;//валидация пароля
+var cVal = false;//валидация почтового кода
 
+//сообщения непрохождения валидации
 var ageMess = "You must be at least 18 year old";
 var emptyMess = "This field can't be empty";
 var invalidEmailMessage =  "Please include an '@' in the email address";
@@ -12,6 +14,7 @@ var $inputYear = $("._inputYear");
 var now = new Date();
 var nowYear = now.getFullYear();
 
+//заполнение віпадающего списка дат
 for (var i = 1950; i<=nowYear; i++){
 	var inStr = "<option>" + i + "</option>";
 	$(inStr).appendTo($inputYear);
@@ -19,6 +22,7 @@ for (var i = 1950; i<=nowYear; i++){
 
 $inputYear.val(nowYear);
 
+//назначение обработчика собьітия для осуществления анимации
 $("._move").on("click", function(){
 	if(event.target.classList.contains('_forMove')) {
 		$(this).addClass("row-reg_icons__move");
@@ -29,13 +33,17 @@ $("._move").on("click", function(){
 
 var $formReg = $("._formReg");
 
+//візов собьітия отправки форм=ьі
 $formReg.submit(function(){
 	console.log("Form is valid!");
 });
 
+//назначение обработчика собьітия потери фокуса для осуществления валидации
 $formReg.on("focusout", "._inputValid", validation);
+//назначение обработчика собьітия фокусировки для осуществления валидации
 $formReg.on("focusin", "._inputValid", clearInvalidEffect);
 
+//назначение обработчика собьітия нажатия на кнопку отправку формьі
 $("._submitReg").on("click", function (){
 	$inputs = $("._inputValid");
 	console.log(aVal + eVal + pVal + cVal);
@@ -47,18 +55,22 @@ $("._submitReg").on("click", function (){
 	}
 });
 
+//назначение обработчика собьітия наведения на подсказку
 $("._questionReg").on("mouseenter", function() {
 	$(this).siblings("._rowTooltip").slideDown(500);
 });
 
+//назначение обработчика собьітия потери наведения на подсказку
 $("._questionReg").on("mouseleave", function() {
 	$(this).siblings("._rowTooltip").slideUp(500);
 });
 
+//функция снятия визуального вьіделение непрохождения валидации
 function clearInvalidEffect (){
 	$(this).removeClass("row-reg_input__invalid");
 }
 
+//функция визуального віделения непрохождения валидации
 function markInvalid ($elem, message){
 	$elem.addClass("row-reg_input__invalid")
 	.siblings("._rowTooltip").queue(function (next) {
@@ -68,6 +80,7 @@ function markInvalid ($elem, message){
 	$elem.siblings("._rowTooltip").fadeIn(1000);
 }
 
+//фукция валидирования полей формі
 function validation () {
 	
 	var flgValid = false;	
@@ -100,12 +113,14 @@ function validation () {
 	
 }
 
+//функция проверки необходимости очистки визуального вьіделения
 function revisionMark (flagVal, $elem, message){
 	if (!flagVal) {
 		markInvalid($elem, message);
 	}
 }
 
+//функция валидирования возраста
 function ageValidation ($elem) {
 	
 	var now = new Date();
@@ -121,7 +136,7 @@ function ageValidation ($elem) {
 	}
 }
 
-
+//функция валирования на пустое поле
 function emptyValidation($elem){
 	
 	if (!valExist($elem)) {
@@ -132,6 +147,7 @@ function emptyValidation($elem){
 	}
 }
 
+//фукция валидирования email-а
 function validationEmail($elem){
 	
 	var str = $elem.val();
@@ -145,6 +161,7 @@ function validationEmail($elem){
 	}
 }
 
+//функция проверки заполненности поля
 function valExist ($elem) {
 	if ($elem.val() != "") {
 		return true;
