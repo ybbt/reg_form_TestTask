@@ -57,12 +57,12 @@ $("._submitReg").on("click", function (){
 
 //назначение обработчика собьітия наведения на подсказку
 $("._questionReg").on("mouseenter", function() {
-	$(this).siblings("._rowTooltip").slideDown(500);
+	$(this).parent().siblings("._rowTooltip").slideDown(500);
 });
 
 //назначение обработчика собьітия потери наведения на подсказку
 $("._questionReg").on("mouseleave", function() {
-	$(this).siblings("._rowTooltip").slideUp(500);
+	$(this).parent().siblings("._rowTooltip").slideUp(500);
 });
 
 //функция снятия визуального вьіделение непрохождения валидации
