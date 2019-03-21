@@ -118,6 +118,12 @@ body {
   height: 40px;
 }
 .main-reg_location-row {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 35px;
+  position: relative;
+}
+.main-reg_location-subrow {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,9 +141,8 @@ body {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
+  width: 100%;
   height: 35px;
-  margin-bottom: 35px;
-  position: relative;
 }
 .main-reg_location {
   display: -webkit-box;

@@ -48,11 +48,12 @@ html(lang='en')
 					.main-reg_row-reg
 						+rowReg("Postal code", true, "text", "postcode", "_inputValid", "PostCode")
 					.main-reg_location-row
-						.main-reg_location
-							+iconLocation
-							
-							span.main-reg_position E.g. Berlin or 10432
-						+iconQuestion
+						.main-reg_location-subrow
+							.main-reg_location
+								+iconLocation
+								
+								span.main-reg_position E.g. Berlin or 10432
+							+iconQuestion
 						
 						.main-reg_tooltip._rowTooltip
 							+tooltipReg("We don’t use postal codes to cantact members directly", jsClassId, "question")
